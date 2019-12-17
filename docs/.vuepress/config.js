@@ -1,5 +1,5 @@
 module.exports = {
-  title: '飞跃高山和大洋的🐟',
+  title: '知行合一',
   // description: '毛玉翔,TimSpan.vuepress',
   head: [
     ['link', { rel: 'icon', href: '/1.png' }]
@@ -15,15 +15,18 @@ module.exports = {
     sidebar: 'auto',
     lastUpdated: '上次更新',
     repo: 'TimSpan/documents',
-    repoLabel: '查看源码',
+    repoLabel: 'Github',
     editLinks: true,
     editLinkText: '编辑文档！',
     nav: [
       { text: 'Home', link: '/' },
       {
         text: 'Vue.js', items: [
-          { text: 'Vue基础知识', link: '/vue/' },
-          { text: 'Vue原理剖析', link: '/vue/principle.md' }
+          { text: 'Vue.js🔨', link: '/vuebase/Vue.md' },
+          { text: 'Vuex🔨', link: '/vuebase/Vuex.md' },
+          { text: 'VueRouter🔨', link: '/vuebase/vueRouter.md' },
+          { text: 'Vue.js———三汪', link: '/vue/vue.md' },
+          
         ]
       },
       {
@@ -37,21 +40,43 @@ module.exports = {
           { text: 'Sass基础', link: '/jishu/Sass-notes.md' },
         ]
       },
-      {
-        text: 'C/C++', items: [
-          { text: 'C基础', link: '/C/C语言基础.md' },
-        ]
-      },
+      // {
+      //   text: 'C/C++', items: [
+      //     { text: 'C基础', link: '/C/C语言基础' },
+      //   ]
+      // },
       {
         text: 'php', items: [
-          { text: 'php基础', link: '/php/php基础.md' },
-          { text: 'XMind', link: '/php/XMind.md' },
-          { text: 'Thinkphp', link: '/ /' },
-          { text: 'Laravel', link: '/ /' },
-          { text: 'Swoole', link: '/ /' },
+          { text: 'php基础', link: '/php/php基础' },
+          { text: 'php面向对象', link: '/php/php面向对象' },
+          { text: 'MySql', link: '/php/MySql' },
+          { text: 'PHP操作mysql', link: '/php/PHP操作Mysql' },
+          { text: 'PHP会话控制', link: '/php/PHP会话控制' },
+          { text: 'Thinkphp', link: '/php/Thinkphp基础' },
+          { text: 'Composer', link: '/php/Composer' },
+          { text: 'Laravel', link: '/php/Laravel' },
+          // { text: '错误与异常', link: '//' },
+          // { text: '图像处理', link: '//' },
+          
+          { text: 'XMind', link: '/php/XMind' },
         ]
       },
-      { text: '关于', link: '/about/' }
+      {
+        text: 'Notes', items: [
+          { text: 'PHPstorm环境配置', link: '/php/PHPstorm环境配置' },
+          { text: '环境变量配置', link: '/php/环境变量配置' },
+          { text: 'vscode插件', link: '/vs/vscode插件' },
+          { text: 'vuepress使用🔨', link: '/php/vuepress使用' },
+        ]
+      },
+      {
+        text: '踩坑记录', items: [
+          { text: 'Jetbrains全家桶中文乱码', link: '/php/踩坑记录' },
+          { text: 'vuepress', link: '/php/vuepress踩坑' },
+        ]
+      },
+      { text: '友人', link: '/php/Friend' },
+      { text: '留言', link: '/about/' }
       
     ]
   }

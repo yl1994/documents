@@ -1,9 +1,3 @@
----
-sidebar: auto
----
-
-
-
 ## **php基础**
 
 ### **安装   在Windows上搭建PHP开发环境**
@@ -15,10 +9,6 @@ sidebar: auto
 - wamp
 - PHPstudy
 - xampp
-
-这里以PHPstudy为例子，官网： https://m.xp.cn/ 
-
-### php基础语法
 
 ### php变量
 
@@ -57,7 +47,7 @@ echo TEST;//输出
 
 - 局部变量 —— 函数内部定义 —— 作用域为函数定义范围内
 
-- 全部 —— 函数外部定义 —— 作用域从顶鬼畜一直到文件结尾
+- 全局 —— 函数外部定义 —— 作用域从顶鬼畜一直到文件结尾
 
 - 超全局
 
@@ -98,7 +88,7 @@ PHP中全局变量在函数中使用时必须声明为global，也可也使用$G
 
 ### **返回值**
 
-- return中止函数玉兴，并将控制权交回调用该函数的代码行
+- return中止函数运行，并将控制权交回调用该函数的代码行
 - 如省略return语句，则返回值为null ，既空值
 - 返回值可以是包括数组和对象的任意类型(资源除外)
 - 函数只能有一个返回值
@@ -129,8 +119,8 @@ PHP中全局变量在函数中使用时必须声明为global，也可也使用$G
 
 - 可变函数是指如果一个变量名后有圆括号，PHP将寻找与变量的值同名的函数，并且尝试执行它
 - 可变函数可以用来实现包含回调函数，函数表在内的用途
-- 可变函数不呢个用于例如echo，print，unset，isset，empty，include。require以及类似的语言结构
-- 可变函数的语法来带哦用一个对象的方法
+- 可变函数不能用于例如echo，print，unset，isset，empty，include。require以及类似的语言结构
+- 可变函数的语法可以用来调用一个对象的方法
 
 ## **PHP函数库**
 
@@ -138,7 +128,9 @@ PHP中全局变量在函数中使用时必须声明为global，也可也使用$G
 
 **获取字符长度**
 
+```
 strlen( string $str)
+```
 
 
 
@@ -146,7 +138,9 @@ strlen( string $str)
 
 **将字符串转换为小写**
 
+```
 string strtolower( string $str)
+```
 
 
 
@@ -154,7 +148,9 @@ string strtolower( string $str)
 
 **将字符串转换成大写**
 
+```
 string strtolower( string $str)
+```
 
 
 
@@ -162,7 +158,9 @@ string strtolower( string $str)
 
 **将句子首字母转换为大写**
 
+```
 string ucfirst ( string $str)
+```
 
 
 
@@ -170,7 +168,9 @@ string ucfirst ( string $str)
 
 **将每个单词的首字母转换为大写字母**
 
+```
 string ucwords ( string $str)
+```
 
 
 
@@ -202,15 +202,15 @@ string ucwords ( string $str)
 
 ### 查找字符串位置的函数：strpos(),strrpos()
 
-**strpos() **返回一个字符串在另一个字符串第一次出现的位置
+strpos() 返回一个字符串在另一个字符串第一次出现的位置
 
 ```php
 int strpos(string haystack,string needle[,int offset=0])
 ```
 
-**strrpos() **返回一个字符串在另一个字符串第一次出现的位置，区分大小写
+strrpos() 返回一个字符串在另一个字符串第一次出现的位置，区分大小写
 
-**strripos() **返回一个字符串在另一个字符串第一次出现的位置，忽略大小写
+strripos() 返回一个字符串在另一个字符串第一次出现的位置，忽略大小写
 
 
 
@@ -222,7 +222,7 @@ int strpos(string haystack,string needle[,int offset=0])
 string substr(string $string,int $start[,int $length])
 ```
 
-**说明：**如果省略length，则返回从start至字符串结尾之间的字符串。如果start或length为负数，则倒数
+**说明**：如果省略length，则返回从start至字符串结尾之间的字符串。如果start或length为负数，则倒数
 
 ### 在字符串中查找字符串：strstr(),strchr(),strrchr(),stristr()
 
@@ -256,7 +256,7 @@ array explode(string $delimiter,string $string $string [,int $limit])
 
 这个函数带有一个字符串(input)作为参数，并根据一个指定的分隔符字符串将输入字符串本身分割为小块，将分割后的小块返回到一个数组中。你可以通过可选的参数limit来限制分成字符串小块的数量
 
-**implode()：**将一个一维数据的值转换为字符串
+implode()：将一个一维数据的值转换为字符串
 
 ```php
 string implode (string $glue,array $pieces)
@@ -424,7 +424,7 @@ print_r($arr);
 
 打印：
 
-```php
+```
 /*
 Array
 (
@@ -457,7 +457,7 @@ $arr = array(
 );
 ```
 
-```php
+```
 /*
 Array
 (
@@ -610,4 +610,237 @@ step
 ```
 
 如果设置了步长 `step`，会被作为单元之间的步进值。`step` 应该为正值。不设置`step` 则默认为 1。
+
+### compact()
+
+建立一个数组，包括变量名和它们的值 
+
+```php
+compact ( mixed $varname1 [, mixed $... ] ) : array
+```
+
+快速创建关联数组
+
+### 通过define()定义常量数组
+
+```php
+define ( string $name , mixed $value [, bool $case_insensitive = false ] ) : bool
+```
+
+```
+name
+```
+
+常量名。
+
+```
+value
+```
+
+常量的值；在 PHP 5 中，`value` 必须是标量( [integer](https://www.php.net/manual/zh/language.types.integer.php)、 [float](https://www.php.net/manual/zh/language.types.float.php)、[string](https://www.php.net/manual/zh/language.types.string.php)、[boolean](https://www.php.net/manual/zh/language.types.boolean.php)、**`NULL`**）在 PHP 7 中还允许是个 [array](https://www.php.net/manual/zh/language.types.array.php) 的值。
+
+### 使用数组
+
+- 根据键名找键值
+- $数组名称[键名]$数组名称{键名}
+
+#### 其他类型转换为数组
+
+- 如果将一个值转换为数组，将得到一个仅有一个元素的数组。其下标为0，该元素极为此标量的值
+- 对象可以转化为数组，但是注意尽量避免这样转换，因为会导致一些意想不到的效果
+
+### 数组运算符
+
+常用数组运算符的使用，+,==,===,!=,!==
+
+- +运算符——合并数组，如果键名相同，使用前面数组的键值
+- ==——只比较键名和键值是否相同，如果相同返回true，否则返回false
+- ===——既要比较键名和键值是狗相同，还有比较类型和顺序
+- !=<>——相当于取反
+- !==——相当于取反
+
+### 遍历数组
+
+- foreach()遍历数组
+- 数组指针函数遍历数组
+- each()和list()遍历数组
+
+### foreach()遍历数组
+
+ *foreach* 语法结构提供了遍历数组的简单方式。*foreach* 仅能够应用于数组和对象，如果尝试应用于其他数据类型的变量，或者未初始化的变量将发出错误信息。有两种语法： 
+
+```php
+foreach (array_expression as $value)//键值
+    statement
+foreach (array_expression as $key => $value)//键名和键值
+    statement
+```
+
+ 第一种格式遍历给定的 *array_expression* 数组。每次循环中，当前单元的值被赋给 *$value* 并且数组内部的指针向前移一步（因此下一次循环中将会得到下一个单元） 
+
+ 第二种格式做同样的事，只除了当前单元的键名也会在每次循环中被赋给变量 *$key* 
+
+::: tip PHP7中foreach的改变
+
+- foreach循环对数组内部指针不再起作用
+- 按照值继续宁循环的时候，foreach是对该数组的值的拷贝
+- 按照引用进行循环的时候，再循环体内修改数组对循环有影响
+
+:::
+
+### 数组指针函数遍历数组
+
+**数组指针相关函数**
+
+key($array):得到当前指针所在位置的 **键名 **，如果不存在，返回false
+
+current($array):得到当前指针所在位置的 **键值 **，如果不存在，返回false
+
+next($array):将数组指针向 **下** 移动一位，并且返回当前指针所再位置的键值；如果没有，返回false
+
+prev($array):将数组指针向 **上 **移动一位，并且返回当前指针所再位置的键值；如果没有，返回false
+
+reset($array):将数组指针移动到数组 **开始 **，并且返回当前指针所在位置的键值；如果没有，返回false
+
+end($array):将数组指针移动到数组 **末尾 **，并且返回当前指针所在位置的键值；如果没有，返回false
+
+### each()和list()遍历数组
+
+ each — 返回数组中当前的键／值对并将数组指针向前移动一步 
+
+```php
+each ( array &$array ) : array
+```
+
+ list — 把数组中的值赋给一组变量 
+
+```php
+list ( mixed $var1 [, mixed $... ] ) : array
+```
+
+### 数组相关API
+
+- 创建数组操作
+- 键值相关操作
+- 数组指针相关操作
+- 数组拆分与合并相关操作
+- 数组交集与差集相关操作
+- 数组排序相关操作
+
+## 文件操作(手册Filesystem)
+
+**文件函数库常用函数及操作**
+
+- 文件信息相关造作API解释及应用
+- 文件相关操作API解释及应用
+- 常用文件相关操作函数封装
+- 常用文件相关操作类封装
+
+### **文件相关API**
+
+**文件信息相关**
+
+- filetype - filesize - filectime - filemtime - fileatime 
+- is_readable - is_writable - is_executable - is_file
+- pathinfo - dlmame -  basename - file_exists
+
+文件操作相关
+
+- touch - unlink - rename 
+- copy - 注意：拷贝远程文件需要开启PHP配置选项中的allow_url_fopen = On
+
+内容操作相关
+
+**fopen() 打开文件或者 URL** 
+
+```php
+fopen ( string $filename , string $mode [, bool $use_include_path = false [, resource $context ]] ) : resource
+```
+
+ **fread() 读取文件** 
+
+```php
+fread ( resource $handle , int $length ) : string
+```
+
+  **ftell()返回文件指针读/写的位置** 
+
+```php
+ftell ( resource $handle ) : int
+```
+
+ **fseek()在文件指针中定位** 
+
+```php
+fseek ( resource $handle , int $offset [, int $whence = SEEK_SET ] ) : int
+```
+
+**fwrite()fputs()写入内容**
+
+```php
+fwrite ( resource $handle , string $string [, int $length ] ) : int
+//fputs — fwrite() 的别名
+```
+
+ **rewind()倒回文件指针的位置** 
+
+```php
+rewind ( resource $handle ) : bool
+```
+
+ **ftruncate()将文件截断到给定的长度** 
+
+```php
+ftruncate ( resource $handle , int $size ) : bool
+```
+
+ **fgetc ()从文件指针中读取字符** 
+
+```php
+fgetc ( resource $handle ) : string
+```
+
+ **fgets()从文件指针中读取一行** 
+
+```php
+fgets ( resource $handle [, int $length ] ) : string
+```
+
+ **feof — 测试文件指针是否到了文件结束的位置** 
+
+```php
+feof ( resource $handle ) : bool
+```
+
+### CSV格式操作
+
+**什么是SCV：**
+
+ 逗号分隔值（Comma-Separated Values，**CSV**，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。 纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。 
+
+ **fgetcsv — 从文件指针中读入一行并解析 CSV 字段** 
+
+```php
+fgetcsv ( resource $handle [, int $length = 0 [, string $delimiter = ',' [, string $enclosure = '"' [, string $escape = '\\' ]]]] ) : array
+```
+
+ **fputcsv — 将行格式化为 CSV 并写入文件指针** 
+
+```php
+fputcsv ( resource $handle , array $fields [, string $delimiter = ',' [, string $enclosure = '"' ]] ) : int
+```
+
+### 简化文件写入和读取操作
+
+ file_get_contents — 将整个文件读入一个字符串 
+
+```php
+file_get_contents ( string $filename [, bool $use_include_path = false [, resource $context [, int $offset = -1 [, int $maxlen ]]]] ) : string
+```
+
+和 [file()](https://www.php.net/manual/zh/function.file.php) 一样，只除了 **file_get_contents()** 把文件读入一个字符串。将在参数 `offset` 所指定的位置开始读取长度为 `maxlen` 的内容。如果失败，**file_get_contents()** 将返回 **`FALSE`**。
+
+**file_get_contents()** 函数是用来将文件的内容读入到一个字符串中的首选方法。如果操作系统支持还会使用内存映射技术来增强性能。
+
+### 常用文件相关操作函数封装
 

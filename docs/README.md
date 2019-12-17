@@ -1,9 +1,9 @@
 ---
 home: true
-heroImage: /6.png
-heroText: TimSpan
-tagline: 知行合一
-actionText: 快速上手 →
+heroImage: /nezha.png
+heroText: 知行合一
+tagline: 未有知而不行者，知而不行，只是未知。
+actionText: 留言
 actionLink: /about/
 features:
 - title: A Blog

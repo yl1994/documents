@@ -1,6 +1,3 @@
----
-sidebar: auto
----
 # Vue
 
 ## Vue基础知识
@@ -1280,7 +1277,7 @@ var vm = new Vue({
   <p v-if="isShow">Hello, world</p>
 </transition>
 <button @click="isShow=!isShow">切换</button>
-```js
+​```js
 var vm = new Vue({
   el: '#app',
   data() {
@@ -2329,7 +2326,5 @@ export default {
         └── XXX.js       # XXX模块
 ```
 
-## Vue原理
 
-### Vue原理剖析
-关于Vue相关原理剖析，请跳转至[Vue原理剖析](/vue/principle.md)阅读更多。
+
