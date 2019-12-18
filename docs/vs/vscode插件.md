@@ -1,4 +1,4 @@
-# vscode插件
+### VScode插件
 
 插件一
 
@@ -7,4 +7,14 @@
 效果
 
 ![](../images/vs/2.png)
+
+####  Vue代码提示插件
+
+::: warning Vue代码提示插件
+
+1. `Vue 2 Snippets`
+2. `Vue VScode Snippets`
+3. `Vue-helper`
+
+:::
 

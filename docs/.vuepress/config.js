@@ -1,5 +1,5 @@
 module.exports = {
-  title: '知行合一',
+  title: 'SinceChow',
   // description: '毛玉翔,TimSpan.vuepress',
   head: [
     ['link', { rel: 'icon', href: '/1.png' }]
@@ -30,7 +30,16 @@ module.exports = {
         ]
       },
       {
-        text: 'JavaScript书籍', items: [
+        text: 'React.js', items: [
+          { text: 'React.js🔨', link: '/react/React.md' },
+          { text: 'Redux🔨', link: '/react/Redux.md' },
+          
+        ]
+      },
+      
+
+      {
+        text: 'JavaScriptBooks', items: [
           { text: '你不知道的JavaScript(上)', link: '/books/你不知道的javascript/你不知道的javascript上' },
           { text: '你不知道的JavaScript(中)', link: '/books/你不知道的javascript/你不知道的javascript中' },
         ]
@@ -40,11 +49,7 @@ module.exports = {
           { text: 'Sass基础', link: '/jishu/Sass-notes.md' },
         ]
       },
-      // {
-      //   text: 'C/C++', items: [
-      //     { text: 'C基础', link: '/C/C语言基础' },
-      //   ]
-      // },
+      
       {
         text: 'php', items: [
           { text: 'php基础', link: '/php/php基础' },
@@ -58,7 +63,7 @@ module.exports = {
           // { text: '错误与异常', link: '//' },
           // { text: '图像处理', link: '//' },
           
-          { text: 'XMind', link: '/php/XMind' },
+          // { text: 'XMind', link: '/php/XMind' },
         ]
       },
       {
@@ -70,12 +75,13 @@ module.exports = {
         ]
       },
       {
-        text: '踩坑记录', items: [
+        text: 'ErrorLog', items: [
           { text: 'Jetbrains全家桶中文乱码', link: '/php/踩坑记录' },
           { text: 'vuepress', link: '/php/vuepress踩坑' },
         ]
       },
-      { text: '友人', link: '/php/Friend' },
+      { text: 'Git', link: '//' },
+      { text: 'Friend', link: '/php/Friend' },
       { text: '留言', link: '/about/' }
       
     ]

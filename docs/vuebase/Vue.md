@@ -24,7 +24,7 @@ data：数据对象
 </div>
 ```
 
-```js {2,5,7}
+```js {2,7}
 var app = new Vue({    
   el:".app",//el 就是 Element
   //el: '#app',
@@ -160,7 +160,7 @@ v-for,v-on,v-model
 
 `为元素绑定事件`。JS中比如 `onclick`
 
-```html
+```html {5}
   <div>
     <input type="button" value="事件绑定" v-on:事件名="方法">
     <input type="button" value="事件绑定" v-on:click="doit">
@@ -175,7 +175,7 @@ v-for,v-on,v-model
       el: '#app',
       methods: {
         doit:function(){
-          //逻辑//方法:doit
+          //逻辑
         }
       },
     })
@@ -470,7 +470,7 @@ v-for,v-on,v-model
 
 ### 列表渲染
 
-## 组件基础 ⭐️
+## 组件基础 🔨
 
 ```js {1,4}
 // 组件名就是 Vue.component 的第一个参数
@@ -485,11 +485,29 @@ Vue.component('button-counter', {
 })
 ```
 
-::: tip 
+::: warning 把组件作为自定义元素来使用
 
-组件是可复用的 Vue 实例
+组件是可复用的 Vue 实例，且带有一个名字：在这个例子中是  <button-counter>  。我们可以在一个通过 `new Vue `创建的 Vue 根实例中，把这个组件作为 `自定义元素` 来使用：
 
 :::
+
+::: warning 组件是可复用的 Vue 实例
+
+`因为组件是可复用的 Vue 实例`，所以它们与 `new Vue` 接收相同的选项，例如 `data`、`computed`、`watch`、`methods` 以及生命周期钩子等。仅有的例外是像 `el` 这样根实例特有的选项。
+
+:::
+
+```html {1}
+<div id="components-demo">
+  <button-counter></button-counter>
+</div>
+```
+
+```js
+    new Vue({
+       el: '#components-demo' 
+    })
+```
 
 
 
@@ -511,22 +529,127 @@ Vue.component('button-counter', {
 
 ```js
 var ComponentA = { /* ... */ }
+var ComponentB = { /* ... */ }
 ```
 
 然后在 `components` 选项中定义你想要使用的组件：
 
 
 
-```js
+```js {4，5}
 new Vue({
   el: '#app',
   components: {
     'component-a': ComponentA,
+    'component-b': ComponentB
   }
 })
 ```
 
-对于 `components` 对象中的每个属性来说，其属性名就是自定义元素的名字，其属性值就是这个组件的选项对象。
+对于 `components` 对象中的每个属性来说，其属性名就是 `自定义元素的名字` ，其属性值就是这个组件的 `选项对象` 。
+
+```html {3,13}
+<body>
+  <div id="app">
+    <counter-a></counter-a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var counter = {
+      template: '<div>0</div>'
+    }
+    var app = new Vue({
+      el: '#app',
+      components:{
+        'counter-a': counter //属性名就是自定义元素的名字，属性命名需遵循规范
+      }
+    })  
+  </script>
+</body>
+```
+
+### 非父子组件通信
+
+::: tip 
+
+非父子组件间传值(Bus/总线/发布订阅模式/观察者模式)
+
+:::
+
+首先 new 一个 Vue 的实例，然后赋值给 `Vue.prototype.bus`，
+
+::: tip
+
+往 `Vue.prototype`上挂载 `bus`属性，这个属性指向 Vue 实例。之后调用 `new Vue()` 或者创建组件的时候每个组件上都会有 `bus`这个属性。每个组件都是 `Vue` 这个类创建的，而这个类上挂了一个 `bus` 属性
+
+:::
+
+```html
+  <div id="app">
+    <child content="Tim"></child>
+    <child content="Span"></child>
+  </div>
+```
+
+
+
+```js {1,11,12,16}
+    Vue.prototype.bus = new Vue()
+
+    Vue.component('child',{
+      props:{
+        content: String
+      },
+      template: '<div @click="handleClick">{{content}} </div>',
+      methods: {
+        handleClick:function(){
+          this.bus.$emit('change', this.content)
+          //这个bus同时又是Vue的实例，所以有$emit方法,
+          //再通过$emit向外触发事件，同时携带数据
+        }        
+      },
+      mounted: function () {
+        //function作用域改变了，把this做个保存
+        var this_ = this
+        this.bus.$on('change', function (msg) {
+          this_.content = msg
+        })
+      }
+    })
+
+    var app = new Vue({
+      el: '#app'
+    }) 
+```
+
+**子组件不能修改父组件传递过来的值**，代码修改如下：
+
+
+
+```js {4,10,13,19}
+    Vue.component('child',{
+      data:function() {
+        return {
+          selfContent: this.content//拷贝
+        }
+      },
+      props:{
+        content: String
+      },
+      template: '<div @click="handleClick">{{selfContent}} </div>',
+      methods: {
+        handleClick:function(){
+          this.bus.$emit('change', this.selfContent)
+        }        
+      },
+      mounted: function () {
+        var this_ = this
+        this.bus.$on('change', function (msg) {
+          this_.selfContent = msg
+        })
+      }
+    })
+```
 
 
 
@@ -534,8 +657,8 @@ new Vue({
 
 ::: warning 父子组件通信
 
-1. 父组件能向子组件传递任何类型的值，子组件通过`props`属性接受。
-2. 子组件不能修改父组件传递过来的值，子组件通过`this.$emit()`方法向父组件派发事件，并且这个事件可以携带参数。
+1. 父组件能向子组件传递任何类型的值，父组件通过 `属性的形式` 向子组件传递数据，子组件通过`props`属性接受。
+2. 子组件不能修改父组件传递过来的值，子组件通过 `事件的形式` 向父组件传值，子组件通过`this.$emit()`方法向父组件派发事件，并且这个事件可以携带参数或者多个参数。
 
 :::
 

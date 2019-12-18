@@ -7,8 +7,8 @@ actionText: 留言
 actionLink: /about/
 features:
 - title: A Blog
-  details: 前端技术博客
-- title: For me
+  details: The front-end blog
+- title: 守仁
   details: 一生伏首拜阳明
 - title: 
   details: 
